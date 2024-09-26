@@ -4,14 +4,40 @@ This is a custom-built application developed using Electron, providing full Java
 
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
-![Screenshot_20240926_055543](https://github.com/user-attachments/assets/59332ed7-6124-4cb0-b498-73239a213a09)
+CatGPT App Installation Guide
+Prerequisites
+Before starting, ensure you have the following installed on your system:
 
-Aww, nya~! Hi there, everyone! 🐾✨ Welcome to CatGPT, the most purrfectly playful OS you could ever dream of! 🐱💕 With CatGPT, you’ll have everything you need right at your paws, from games to creative apps like GIMP, all wrapped up in the most kawaii (and functional!) anime catgirl theme ever! 🎮🎨
+Git
+Node.js (v16 or higher)
+NPM (comes with Node.js)
+Electron (can be installed via NPM)
+1. Clone the Repository
+First, clone the CatGPT repository to your local machine:
 
-No need to worry about complicated setups, ‘cause it’s all pre-pawed and ready to go, nyan! Steam, Proton, MangoHud—all running smoothly like a well-groomed kitty. You even get full privacy with no sneaky ads, meow~! 😺💻
+git clone https://github.com/bluedinosaur139/catgpt.git
 
-And if you love keeping things cute and fun, you’re going to adore how CatGPT brings joy to everything, from desktop looks to smooth performance. Who wouldn’t want an OS that makes you feel like you’re living in your own adorable anime world every time you boot up? 😻💫
+2. Navigate to the Project Directory
+Move into the directory where you cloned the repository:
 
-So let’s pounce on the opportunity, nya! Let CatGPT whisker you away to a purrfectly optimized world, where fun meets functionality! 🌸🐾
+cd catgpt
 
-![Screenshot_20240926_062636](https://github.com/user-attachments/assets/4243e0a3-26be-4fbb-96c5-625c8f06d902)
+3. Install Dependencies
+Install all the required dependencies for Electron and the app using NPM:
+
+npm install
+4. Run the CatGPT App
+Start the CatGPT app using Electron:
+
+npm start
+5. Build the App (Optional)
+If you want to package the app into an executable format:
+
+npm run build
+Dependencies
+Electron: This is the main framework used to build and run the app. Install via:
+
+npm install electron --save-dev
+PyQt5 (for future versions, if needed): If you're using Python for certain parts of the app, install with:
+
+sudo pacman -S python-pyqt5
