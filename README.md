@@ -1,6 +1,6 @@
 ![Screenshot_20240926_054541](https://github.com/user-attachments/assets/7bc1fb5f-bd2f-4381-9687-373948dbf8a7)
 
-This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually evolve into a full-fledged operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience.
+This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually evolve into a full-fledged operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience.
 
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
@@ -33,7 +33,7 @@ Start the CatGPT app using Electron:
 npm start
 ```
 5. Build the App (Optional, but highly recommended)
-If you want to package the app into an executable format after this command, you can just type catgpt and hit enter. This makes krunner find the app. You can then pin the app to task manager and set any icon you with by editing the application.  To find the edit menu press the meta or windows key or open your application menu and type catgpt and right click on it and edit application. Future release will have It's own icon and I will work more on the window for the app itself:
+If you want to package the app into an executable format after this command, on the desktop or in the application menu you can just type catgpt and hit enter. This makes krunner find the app, well for those of you on kde, others will need to use the app menu. You can then pin the app to task manager and set any icon you with by editing the application.  To find the edit menu press the meta or windows key or open your application menu and type catgpt and right click on it and edit application. Future release will have It's own icon and I will work more on the window for the app itself:
 ```
 npm run build
 ```
