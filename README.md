@@ -43,7 +43,11 @@ Electron: This is the main framework used to build and run the app. Install via:
 npm install electron --save-dev
 ```
 
+
+
 Acknowledgment & Thoughts on Development
+
+
 This app was made with the assistance of ChatGPT by OpenAI. I collaborated with ChatGPT throughout the development process, where it provided real-time advice, helped debug issues, and guided me through the creation of this fully functional Linux-based Electron app.
 
 ChatGPT played a crucial role in:
