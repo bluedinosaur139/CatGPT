@@ -32,8 +32,8 @@ Start the CatGPT app using Electron:
 ```
 npm start
 ```
-5. Build the App (Optional)
-If you want to package the app into an executable format:
+5. Build the App (Optional, but highly recommended)
+If you want to package the app into an executable format after this command, you can just type catgpt and hit enter. This makes krunner find the app. You can then pin the app to task manager and set any icon you with by editing the application.  To find the edit menu press the meta or windows key or open your application menu and type catgpt and right click on it and edit application. Future release will have It's own icon and I will work more on the window for the app itself:
 ```
 npm run build
 ```
