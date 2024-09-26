@@ -1,6 +1,6 @@
 ![Screenshot_20240926_054541](https://github.com/user-attachments/assets/7bc1fb5f-bd2f-4381-9687-373948dbf8a7)
 
-This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually evolve into a full-fledged operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience.
+This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually be just one of the neat apps I make for my operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience. See my CatGPT-OS repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
 
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
