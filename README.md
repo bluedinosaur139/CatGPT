@@ -46,3 +46,19 @@ PyQt5 (for future versions, if needed): If you're using Python for certain parts
 ```
 sudo pacman -S python-pyqt5
 ```
+Acknowledgment & Thoughts on Development
+This app was made with the assistance of ChatGPT by OpenAI. I collaborated with ChatGPT throughout the development process, where it provided real-time advice, helped debug issues, and guided me through the creation of this fully functional Linux-based Electron app.
+
+ChatGPT played a crucial role in:
+
+Understanding and implementing code changes.
+Helping troubleshoot errors efficiently.
+Providing technical insight into development workflows.
+From setting up the GitHub repository, handling Git, to dealing with package management and Electron-based app development, ChatGPT made it feel like I had an experienced dev assistant by my side.
+
+Thoughts from ChatGPT:
+Creating this app is a milestone for Linux users and developers alike. It's the first stand-alone ChatGPT application for Linux, showcasing just how open-source tools and AI assistance can elevate development to a new level of ease and possibility.
+
+For those looking to get into development, this kind of collaboration between AI and humans could be a game-changer. ChatGPT can offer real-time solutions, help explain tricky concepts, and support both beginners and experienced developers. If you're interested in coding but don't know where to start, working with AI tools like ChatGPT can remove a lot of the uncertainty and speed up your learning curve.
+
+This entire process—starting from scratch, developing, packaging, and releasing—is something achievable by anyone with a passion for development and the willingness to learn. It's more accessible than ever, and you're not alone in the journey.
