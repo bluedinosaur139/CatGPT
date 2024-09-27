@@ -17,6 +17,11 @@ sudo apt install npm nodejs
 
 ```
 
+If you use Arch BTW:
+```
+sudo pacman -S nodejs npm
+```
+
 ```
 npm install electron --save-dev
 npm install electron-packager --save-dev
