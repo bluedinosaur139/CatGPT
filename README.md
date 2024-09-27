@@ -62,7 +62,7 @@ If you want to package the app into an executable format after this command, on 
 npm run build
 ```
 Dependencies
-Electron: This is the main framework used to build and run the app. Install via:
+Electron: This is the main framework used to build and run the app. You should not need this step if you followed the guide, this is here for informational purposes. Install via:
 ```
 npm install electron --save-dev
 ```
