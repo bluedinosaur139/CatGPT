@@ -1,4 +1,5 @@
-![Screenshot_20240926_054541](https://github.com/user-attachments/assets/7bc1fb5f-bd2f-4381-9687-373948dbf8a7)
+
+![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
 CatGPT is almost too purrfect for everyone... almost. 😉 A one-click installer might be closer than you think, but for now, follow the guide to unlock the magic. The cats demand a little curiosity before revealing all their secrets! 🐾
 
