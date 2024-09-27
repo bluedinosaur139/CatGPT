@@ -4,6 +4,8 @@ Now includes both x64 and ARM by default simply use which ever version you have 
 
 This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually be just one of the neat apps I make for my operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience. See my CatGPT-OS repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
 
+My own personal take: no onther version of ChatGPT on linux runs this well, brave constantly has errors forcing you to refresh as the server load increases due to dropped packets, this app runs much better thany other browser based version try it and see!
+
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
 CatGPT App Installation Guide
