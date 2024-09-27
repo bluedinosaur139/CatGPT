@@ -32,10 +32,7 @@ sudo pacman -S nodejs npm
 npm install electron --save-dev
 npm install electron-packager --save-dev
 ```
-Git
-Node.js (v16 or higher)
-NPM (comes with Node.js)
-Electron (can be installed via NPM)
+
 1. Clone the Repository
 First, clone the CatGPT repository to your local machine:
 ```
