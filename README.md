@@ -1,6 +1,6 @@
 ![Screenshot_20240926_054541](https://github.com/user-attachments/assets/7bc1fb5f-bd2f-4381-9687-373948dbf8a7)
 
-CatGPT is almost too perfect for everyone... almost. 😉 A one-click installer might be closer than you think, but for now, follow the guide to unlock the magic. The cats demand a little curiosity before revealing all their secrets! 🐾
+CatGPT is almost too purrfect for everyone... almost. 😉 A one-click installer might be closer than you think, but for now, follow the guide to unlock the magic. The cats demand a little curiosity before revealing all their secrets! 🐾
 
 Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality.
 
