@@ -1,9 +1,11 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('path');
 
 function createWindow () {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
+    icon: path.join(__dirname, 'resources/CatGPTIcon.png'), // Update the icon path to resources folder
     webPreferences: {
       nodeIntegration: true
     }
