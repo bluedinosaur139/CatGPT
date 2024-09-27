@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . CatGPT --platform=linux --arch=x64 --overwrite",
+    "build": "electron-packager . CatGPT --platform=linux --arch=x64 --overwrite --icon=./CatGPTIcon.png",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
