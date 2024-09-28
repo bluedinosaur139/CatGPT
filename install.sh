@@ -79,4 +79,4 @@ fi
 # Final message
 echo "Installation script completed."
 
-npm start
+npm start --no-sandbox
