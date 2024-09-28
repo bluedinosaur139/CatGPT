@@ -2,12 +2,14 @@
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
 Either follow the guide and skip this command block or use this one command block to automate install:
+
 ```
 git clone https://github.com/bluedinosaur139/catgpt.git
 cd catgpt
 sudo chmod +x install.sh
 sudo ./install.sh
 ```
+
 It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with above command.
 
 Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality.
@@ -23,6 +25,7 @@ Prerequisites
 Before starting, ensure you have the following installed on your system:
 
 debian only:
+
 ```
 sudo apt update
 sudo apt install npm nodejs
@@ -31,6 +34,7 @@ npm install electron
 ```
 
 If you use Arch BTW:
+
 ```
 sudo pacman -S nodejs npm
 ```
@@ -42,35 +46,56 @@ npm install electron-packager --save-dev
 
 1. Clone the Repository
 First, clone the CatGPT repository to your local machine:
+
 ```
 git clone https://github.com/bluedinosaur139/catgpt.git
 ```
+
 2. Navigate to the Project Directory
 Move into the directory where you cloned the repository:
+
 ```
 cd catgpt
 ```
+
 3. Install Dependencies
 Install all the required dependencies for Electron and the app using NPM:
+
 ```
 npm install
 ```
+
 4. Run the CatGPT App, or skip this step if you just want an app and go to step 5.
 
 Start the CatGPT app using Electron:
+
 ```
 npm start
 ```
+
 5. Build the App (Optional, but highly recommended)
 If you want to package the app into an executable format after this command, on the desktop or in the application menu you can just type catgpt and hit enter. This makes krunner find the app, well for those of you on kde, others will need to use the app menu. You can then pin the app to task manager and set any icon you want by editing the application or if on kde use menu editor to create your own icon and link it to the file made by npm build. That is what the icon is for. Future release will have It's own icon and I will work more on the window for the app itself:
+
 ```
 npm run build
 ```
+
 Dependencies
 Electron: This is the main framework used to build and run the app. You should not need this step if you followed the guide, this is here for informational purposes. Install via:
+
 ```
 npm install electron --save-dev
 ```
+
+Having Trouble? Try This First:
+
+If you encounter any issues while running the CatGPT app, it might be due to an outdated Electron version or permissions problem. Before diving deeper into troubleshooting, try updating Electron using the following commands:
+
+```
+npm update electron
+```
+
+Afterward, you can attempt running or building the app again. This simple update can resolve many compatibility issues, ensuring you’re using the latest Electron release.
 
 
 
