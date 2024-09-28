@@ -33,16 +33,8 @@ install_debian() {
     echo "Building the app..."
     npm run build
 
-    # Check if the build directory exists before moving
-    if [ -d "CatGPT-linux-x64" ]; then
-        echo "Build successful. Moving build to desired directory..."
-        mkdir -p ~/CatGPTApp
-        cp -r CatGPT-linux-x64/* ~/CatGPTApp
-        echo "CatGPT has been installed successfully at ~/CatGPTApp."
-    else
-        echo "Build failed. No build directory found."
-        exit 1
-    fi
+    # No extra build directories, the build output stays in ~/catgpt/CatGPT-linux-x64
+    echo "CatGPT has been installed in ~/catgpt/CatGPT-linux-x64."
 }
 
 # Function to install on Arch-based systems
@@ -66,16 +58,8 @@ install_arch() {
     echo "Building the app..."
     npm run build
 
-    # Check if the build directory exists before moving
-    if [ -d "CatGPT-linux-x64" ]; then
-        echo "Build successful. Moving build to desired directory..."
-        mkdir -p ~/CatGPTApp
-        cp -r CatGPT-linux-x64/* ~/CatGPTApp
-        echo "CatGPT has been installed successfully at ~/CatGPTApp."
-    else
-        echo "Build failed. No build directory found."
-        exit 1
-    fi
+    # No extra build directories, the build output stays in ~/catgpt/CatGPT-linux-x64
+    echo "CatGPT has been installed in ~/catgpt/CatGPT-linux-x64."
 }
 
 # Check for the type of Linux distribution
