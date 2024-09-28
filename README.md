@@ -1,7 +1,7 @@
 
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
-Either follow the guide or download just the install.sc script and execute it with:
+Either follow the guide or just clone the repo and execute the install script with:
 ```
 sudo chmod +x install.sh
 sudo ./install.sh
