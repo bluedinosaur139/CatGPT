@@ -74,7 +74,7 @@ npm start
 ```
 
 5. Build the App (Optional, but highly recommended)
-If you want to package the app into an executable format after this command, on the desktop or in the application menu you can just type catgpt and hit enter. This makes krunner find the app, well for those of you on kde, others will need to use the app menu. You can then pin the app to task manager and set any icon you want by editing the application or if on kde use menu editor to create your own icon and link it to the file made by npm build. That is what the icon is for. Future release will have It's own icon and I will work more on the window for the app itself:
+If you want to package the app into an executable format after this command, on the desktop or in the application menu you can just type catgpt and hit enter. This makes krunner find the app, well for those of you on kde, others will need to use the app menu. You can then pin the app to task manager to have easy access, and the icon is pretty darn cute if i say so myself.
 
 ```
 npm run build
