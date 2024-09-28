@@ -10,42 +10,52 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false, // Required to enable node integration and API access
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            media: { audio: true } // Allow microphone access
         }
     });
 
-    // Load the ChatGPT URL
+    // Load the ChatGPT URL first
     win.loadURL('https://chat.openai.com/');
 
-    // Inject JavaScript to check for microphone access once the window has loaded
+    // Check for microphone access after the page has loaded
     win.webContents.on('did-finish-load', () => {
-        win.webContents.executeJavaScript(`
-            navigator.permissions.query({ name: 'microphone' }).then(function (result) {
-                if (result.state === 'granted') {
-                    console.log('Microphone access granted');
-                } else if (result.state === 'prompt') {
-                    console.log('Microphone access requires permission');
-                } else {
-                    console.log('Microphone access denied');
-                }
-            }).catch(function (error) {
-                console.error('Error querying microphone permissions: ', error);
-            });
+        navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+            console.log('Microphone access granted');
+        })
+        .catch(function (err) {
+            console.log('Microphone access denied: ', err);
+        });
 
-            // Add the microphone toggle button
+        // Add microphone toggle button
+        const micButtonHTML = `
+            <button id="mic-toggle" style="position: absolute; right: 10px; bottom: 10px;">
+                🎤 Toggle Mic
+            </button>`;
+        
+        win.webContents.executeJavaScript(`
             if (!document.getElementById('mic-toggle')) {
                 const micButton = document.createElement('div');
-                micButton.innerHTML = '<button id="mic-toggle" style="position: absolute; right: 10px; bottom: 10px;">🎤 Toggle Mic</button>';
+                micButton.innerHTML = \`${micButtonHTML}\`;
                 document.body.appendChild(micButton);
 
+                let micEnabled = false;
+
                 document.getElementById('mic-toggle').addEventListener('click', () => {
-                    navigator.mediaDevices.getUserMedia({ audio: true })
-                    .then(function (stream) {
-                        console.log('Microphone enabled');
-                    })
-                    .catch(function (err) {
-                        console.log('Microphone access denied: ', err);
-                    });
+                    if (!micEnabled) {
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(function (stream) {
+                            console.log('Microphone enabled');
+                            micEnabled = true;
+                        })
+                        .catch(function (err) {
+                            console.log('Microphone access denied: ', err);
+                        });
+                    } else {
+                        console.log('Microphone disabled');
+                        micEnabled = false;
+                    }
                 });
             }
         `);
