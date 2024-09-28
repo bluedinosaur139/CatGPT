@@ -33,6 +33,9 @@ install_debian() {
     echo "Building the app..."
     npm run build
 
+    # Set correct permissions for the build folder
+    chmod -R 755 CatGPT-linux-x64/
+
     echo "CatGPT has been installed successfully."
 }
 
@@ -56,6 +59,9 @@ install_arch() {
 
     echo "Building the app..."
     npm run build
+
+    # Set correct permissions for the build folder
+    chmod -R 755 CatGPT-linux-x64/
 
     echo "CatGPT has been installed successfully."
 }
