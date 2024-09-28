@@ -1,76 +1,79 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-function createWindow () {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    icon: path.join(__dirname, 'resources/CatGPTIcon.png'),
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
+// Function to create the browser window
+function createWindow() {
+    const win = new BrowserWindow({
+        width: 1200,
+        height: 800,
+        icon: path.join(__dirname, 'resources/CatGPTIcon.png'), // Ensure the icon path is correct
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false, // Required to enable node integration and API access
+            enableRemoteModule: true,
+            media: { audio: true } // Allow microphone access
+        }
+    });
 
-  win.loadURL('https://chat.openai.com/');
+    // Load the ChatGPT URL
+    win.loadURL('https://chat.openai.com/');
 
-  // Define a function to handle speech recognition
-  const startSpeechRecognition = () => {
-    win.webContents.executeJavaScript(`
-      if ('webkitSpeechRecognition' in window) {
-        const recognition = new webkitSpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = 'en-US';
+    // Check for microphone access once the window has loaded
+    win.webContents.on('did-finish-load', () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function (stream) {
+            console.log('Microphone access granted');
+        })
+        .catch(function (err) {
+            console.log('Microphone access denied: ', err);
+        });
+    });
 
-        recognition.start();
+    // Toggle microphone button functionality
+    let micEnabled = false;
+    win.webContents.on('did-finish-load', () => {
+        const micButtonHTML = `
+            <button id="mic-toggle" style="position: absolute; right: 10px; bottom: 10px;">
+                🎤 Toggle Mic
+            </button>`;
+        win.webContents.executeJavaScript(`
+            if (!document.getElementById('mic-toggle')) {
+                const micButton = document.createElement('div');
+                micButton.innerHTML = \`${micButtonHTML}\`;
+                document.body.appendChild(micButton);
 
-        recognition.onresult = (event) => {
-          const queryBox = document.querySelector('textarea');
-          if (queryBox) {
-            queryBox.value = event.results[0][0].transcript;
-          }
-        };
-
-        recognition.onerror = (event) => {
-          console.error('Speech recognition error:', event.error);
-        };
-      } else {
-        console.log('Speech recognition not supported');
-      }
-    `);
-  };
-
-  // Create the menu template with a microphone option
-  const menuTemplate = [
-    {
-      label: 'Options',
-      submenu: [
-        {
-          label: 'Start Voice Input (🎤)',
-          click: () => {
-            startSpeechRecognition();
-          }
-        },
-        { role: 'quit' }
-      ]
-    }
-  ];
-
-  // Build and set the menu
-  const menu = Menu.buildFromTemplate(menuTemplate);
-  Menu.setApplicationMenu(menu);
+                document.getElementById('mic-toggle').addEventListener('click', () => {
+                    if (${micEnabled}) {
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(function (stream) {
+                            console.log('Microphone enabled');
+                            ${micEnabled} = true;
+                        })
+                        .catch(function (err) {
+                            console.log('Microphone access denied: ', err);
+                        });
+                    } else {
+                        console.log('Microphone disabled');
+                        ${micEnabled} = false;
+                    }
+                });
+            }
+        `);
+    });
 }
 
+// Create the window when the app is ready
 app.whenReady().then(() => {
-  createWindow();
+    createWindow();
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
+    app.on('activate', () => {
+        if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
 });
 
+// Quit the app when all windows are closed
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
