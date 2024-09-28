@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 function createWindow () {
@@ -13,46 +13,52 @@ function createWindow () {
 
   win.loadURL('https://chat.openai.com/');
 
-  win.webContents.on('did-finish-load', () => {
-    // Inject microphone button and speech recognition logic into the ChatGPT page
+  // Define a function to handle speech recognition
+  const startSpeechRecognition = () => {
     win.webContents.executeJavaScript(`
-      // Find the text input area (replace with the actual query box selector)
-      const queryBox = document.querySelector('textarea');
+      if ('webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = 'en-US';
 
-      if (queryBox) {
-        // Create the microphone button
-        const micButton = document.createElement('button');
-        micButton.textContent = '🎤';
-        micButton.style.marginLeft = '10px'; // Add space between query box and mic button
-        micButton.style.cursor = 'pointer';
+        recognition.start();
 
-        // Insert the microphone button after the query box
-        queryBox.parentNode.insertBefore(micButton, queryBox.nextSibling);
+        recognition.onresult = (event) => {
+          const queryBox = document.querySelector('textarea');
+          if (queryBox) {
+            queryBox.value = event.results[0][0].transcript;
+          }
+        };
 
-        if ('webkitSpeechRecognition' in window) {
-          const recognition = new webkitSpeechRecognition();
-          recognition.continuous = false;
-          recognition.interimResults = false;
-          recognition.lang = 'en-US';
-
-          micButton.onclick = () => {
-              recognition.start();
-          };
-
-          recognition.onresult = (event) => {
-              queryBox.value = event.results[0][0].transcript; // Inject the speech into the query box
-          };
-
-          recognition.onerror = (event) => {
-              console.error('Speech recognition error:', event.error);
-          };
-        } else {
-          micButton.disabled = true; // Disable the button if speech recognition is not supported
-          micButton.textContent = '🎤 (Not Supported)';
-        }
+        recognition.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+        };
+      } else {
+        console.log('Speech recognition not supported');
       }
     `);
-  });
+  };
+
+  // Create the menu template with a microphone option
+  const menuTemplate = [
+    {
+      label: 'Options',
+      submenu: [
+        {
+          label: 'Start Voice Input (🎤)',
+          click: () => {
+            startSpeechRecognition();
+          }
+        },
+        { role: 'quit' }
+      ]
+    }
+  ];
+
+  // Build and set the menu
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
 }
 
 app.whenReady().then(() => {
