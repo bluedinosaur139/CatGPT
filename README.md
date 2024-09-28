@@ -3,8 +3,8 @@
 
 Either follow the guide or download just the install.sc script and execute it with:
 ```
-chmod +x install.sh
-./install.sh
+sudo chmod +x install.sh
+sudo ./install.sh
 ```
 It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with above command.
 
