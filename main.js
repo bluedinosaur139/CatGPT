@@ -10,56 +10,12 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false, // Required to enable node integration and API access
-            enableRemoteModule: true,
-            media: { audio: true } // Allow microphone access
+            enableRemoteModule: true
         }
     });
 
-    // Load the ChatGPT URL first
+    // Load the ChatGPT URL
     win.loadURL('https://chat.openai.com/');
-
-    // Check for microphone access after the page has loaded
-    win.webContents.on('did-finish-load', () => {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(function (stream) {
-            console.log('Microphone access granted');
-        })
-        .catch(function (err) {
-            console.log('Microphone access denied: ', err);
-        });
-
-        // Add microphone toggle button
-        const micButtonHTML = `
-            <button id="mic-toggle" style="position: absolute; right: 10px; bottom: 10px;">
-                🎤 Toggle Mic
-            </button>`;
-        
-        win.webContents.executeJavaScript(`
-            if (!document.getElementById('mic-toggle')) {
-                const micButton = document.createElement('div');
-                micButton.innerHTML = \`${micButtonHTML}\`;
-                document.body.appendChild(micButton);
-
-                let micEnabled = false;
-
-                document.getElementById('mic-toggle').addEventListener('click', () => {
-                    if (!micEnabled) {
-                        navigator.mediaDevices.getUserMedia({ audio: true })
-                        .then(function (stream) {
-                            console.log('Microphone enabled');
-                            micEnabled = true;
-                        })
-                        .catch(function (err) {
-                            console.log('Microphone access denied: ', err);
-                        });
-                    } else {
-                        console.log('Microphone disabled');
-                        micEnabled = false;
-                    }
-                });
-            }
-        `);
-    });
 }
 
 // Create the window when the app is ready
