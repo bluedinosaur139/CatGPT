@@ -3,6 +3,12 @@
 
 CatGPT is almost too purrfect for everyone... almost. 😉 A one-click installer might be closer than you think, but for now, follow the guide to unlock the magic. The cats demand a little curiosity before revealing all their secrets! 🐾
 
+mmmm ok here it is, run this if youre lazy and can skip all steps........
+
+```
+bash install.sh
+```
+
 Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality.
 
 This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually be just one of the neat apps I make for my operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience. See my CatGPT-OS repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
