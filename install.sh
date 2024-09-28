@@ -4,8 +4,7 @@
 ARCH=$(uname -m)
 
 # Check if the user is root
-if [ "$EUID" -ne 0 ]
-then 
+if [ "$EUID" -ne 0 ]; then
     echo "Please run as root (use sudo)."
     exit
 fi
@@ -29,6 +28,9 @@ install_debian() {
 
     echo "Installing dependencies..."
     npm install
+
+    echo "Cleaning up previous builds..."
+    sudo rm -rf ./CatGPT-linux-x64 || true
 
     echo "Building the app..."
     npm run build
@@ -56,6 +58,9 @@ install_arch() {
 
     echo "Installing dependencies..."
     npm install
+
+    echo "Cleaning up previous builds..."
+    sudo rm -rf ./CatGPT-linux-x64 || true
 
     echo "Building the app..."
     npm run build
