@@ -1,8 +1,10 @@
 
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
-Either follow the guide or just clone the repo and execute the install script with:
+Either follow the guide and skip this command block or use this one command block to automate install:
 ```
+git clone https://github.com/bluedinosaur139/catgpt.git
+cd catgpt
 sudo chmod +x install.sh
 sudo ./install.sh
 ```
