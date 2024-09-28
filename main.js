@@ -1,59 +1,53 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-let useCatAgent = false; // Default is off
+let useCatAgent = false; // Track whether the catgirl agent is active
 
-function createWindow() {
+function createWindow () {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
-    icon: path.join(__dirname, 'resources/CatGPTIcon.png'),
+    icon: path.join(__dirname, 'resources/CatGPTIcon.png'), // Update the icon path to resources folder
     webPreferences: {
       nodeIntegration: true
     }
   });
 
-  // Load the default ChatGPT page
+  // Add menu with a toggle option for catgirl agent
+  const template = [
+    {
+      label: "Options",
+      submenu: [
+        {
+          label: "Toggle Nekomi Sakura Mode",
+          type: "checkbox",
+          checked: useCatAgent,
+          click: () => {
+            useCatAgent = !useCatAgent;
+            console.log(`Nekomi Sakura mode: ${useCatAgent ? 'On' : 'Off'}`);
+          }
+        }
+      ]
+    }
+  ];
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+
+  // Load OpenAI URL by default
   win.loadURL('https://chat.openai.com/');
 
-  // After the page loads, modify interaction if Nekomi Sakura is active
+  // Modify behavior based on Nekomi Sakura toggle
   win.webContents.on('did-finish-load', () => {
     if (useCatAgent) {
-      // Inject playful catgirl prompt
       win.webContents.executeJavaScript(`
-        const catPrompt = "Nekomi Sakura: Nyaa~! How can this playful catgirl help you today? 🐾";
-        const inputBox = document.querySelector('textarea');
-        inputBox.value = catPrompt;
-        inputBox.dispatchEvent(new Event('input', { bubbles: true }));
+        document.querySelector('textarea').value = "You're now speaking with Nekomi Sakura, the playful catgirl! How can she help you today? :3";
       `);
     }
   });
 }
 
-// Function to toggle the catgirl agent
-function toggleCatAgent() {
-  useCatAgent = !useCatAgent;
-  console.log(`Nekomi Sakura Agent is now ${useCatAgent ? 'enabled' : 'disabled'}`);
-}
-
-// Create the menu with an option to toggle the agent
-function createMenu() {
-  const menu = Menu.buildFromTemplate([
-    {
-      label: 'Agent',
-      submenu: [
-        {
-          label: 'Toggle Nekomi Sakura',
-          click: () => toggleCatAgent(),
-        }
-      ]
-    }
-  ]);
-  Menu.setApplicationMenu(menu);
-}
-
 app.whenReady().then(() => {
   createWindow();
-  createMenu();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
