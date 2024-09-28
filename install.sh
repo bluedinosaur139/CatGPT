@@ -34,7 +34,8 @@ install_debian() {
     npm run build
 
     echo "Moving build to desired directory..."
-    mv CatGPT-linux-x64 ~/CatGPTApp
+    mkdir -p ~/CatGPTApp
+    cp -r CatGPT-linux-x64/* ~/CatGPTApp
 
     echo "CatGPT has been installed successfully at ~/CatGPTApp."
 }
@@ -61,7 +62,8 @@ install_arch() {
     npm run build
 
     echo "Moving build to desired directory..."
-    mv CatGPT-linux-x64 ~/CatGPTApp
+    mkdir -p ~/CatGPTApp
+    cp -r CatGPT-linux-x64/* ~/CatGPTApp
 
     echo "CatGPT has been installed successfully at ~/CatGPTApp."
 }
