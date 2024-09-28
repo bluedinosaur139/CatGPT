@@ -1,13 +1,12 @@
 
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
-CatGPT is almost too purrfect for everyone... almost. 😉 A one-click installer might be closer than you think, but for now, follow the guide to unlock the magic. The cats demand a little curiosity before revealing all their secrets! 🐾
-
-mmmm ok here it is, run this if youre lazy and can skip all steps........
-
+Either follow the guide or download just the install.sc script and execute it with:
 ```
-bash install.sh
+chmod +x install.sh
+./install.sh
 ```
+It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with above command.
 
 Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality.
 
