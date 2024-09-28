@@ -78,3 +78,5 @@ fi
 
 # Final message
 echo "Installation script completed."
+
+npm start
