@@ -14,37 +14,42 @@ function createWindow () {
   win.loadURL('https://chat.openai.com/');
 
   win.webContents.on('did-finish-load', () => {
-    // Inject speech recognition UI and logic into the web page
+    // Inject microphone button and speech recognition logic into the ChatGPT page
     win.webContents.executeJavaScript(`
-      const startRecordBtn = document.createElement('button');
-      startRecordBtn.textContent = '🎤 Start Dictation';
-      document.body.appendChild(startRecordBtn);
+      // Find the text input area (replace with the actual query box selector)
+      const queryBox = document.querySelector('textarea');
 
-      const resultText = document.createElement('textarea');
-      resultText.rows = 5;
-      resultText.cols = 30;
-      document.body.appendChild(resultText);
+      if (queryBox) {
+        // Create the microphone button
+        const micButton = document.createElement('button');
+        micButton.textContent = '🎤';
+        micButton.style.marginLeft = '10px'; // Add space between query box and mic button
+        micButton.style.cursor = 'pointer';
 
-      if ('webkitSpeechRecognition' in window) {
+        // Insert the microphone button after the query box
+        queryBox.parentNode.insertBefore(micButton, queryBox.nextSibling);
+
+        if ('webkitSpeechRecognition' in window) {
           const recognition = new webkitSpeechRecognition();
           recognition.continuous = false;
           recognition.interimResults = false;
           recognition.lang = 'en-US';
 
-          startRecordBtn.onclick = () => {
+          micButton.onclick = () => {
               recognition.start();
           };
 
           recognition.onresult = (event) => {
-              resultText.value = event.results[0][0].transcript;
-              document.querySelector('textarea').value = resultText.value; // Simulate typing into ChatGPT
+              queryBox.value = event.results[0][0].transcript; // Inject the speech into the query box
           };
 
           recognition.onerror = (event) => {
               console.error('Speech recognition error:', event.error);
           };
-      } else {
-          console.log('Speech Recognition not supported on this browser.');
+        } else {
+          micButton.disabled = true; // Disable the button if speech recognition is not supported
+          micButton.textContent = '🎤 (Not Supported)';
+        }
       }
     `);
   });
