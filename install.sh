@@ -23,9 +23,9 @@ install_debian() {
     npm install electron
 
     echo "Cloning the repository..."
-    git clone https://github.com/bluedinosaur139/catgpt.git ~/catgpt
+    git clone https://github.com/bluedinosaur139/catgpt.git
 
-    cd ~/catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+    cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
     echo "Installing dependencies..."
     npm install
@@ -33,8 +33,7 @@ install_debian() {
     echo "Building the app..."
     npm run build
 
-    # No extra build directories, the build output stays in ~/catgpt/CatGPT-linux-x64
-    echo "CatGPT has been installed in ~/catgpt/CatGPT-linux-x64."
+    echo "CatGPT has been installed successfully."
 }
 
 # Function to install on Arch-based systems
@@ -48,9 +47,9 @@ install_arch() {
     npm install electron-packager --save-dev
 
     echo "Cloning the repository..."
-    git clone https://github.com/bluedinosaur139/catgpt.git ~/catgpt
+    git clone https://github.com/bluedinosaur139/catgpt.git
 
-    cd ~/catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+    cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
     echo "Installing dependencies..."
     npm install
@@ -58,8 +57,7 @@ install_arch() {
     echo "Building the app..."
     npm run build
 
-    # No extra build directories, the build output stays in ~/catgpt/CatGPT-linux-x64
-    echo "CatGPT has been installed in ~/catgpt/CatGPT-linux-x64."
+    echo "CatGPT has been installed successfully."
 }
 
 # Check for the type of Linux distribution
