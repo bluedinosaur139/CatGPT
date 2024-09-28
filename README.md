@@ -48,7 +48,7 @@ Install all the required dependencies for Electron and the app using NPM:
 ```
 npm install
 ```
-4. Run the CatGPT App
+4. Run the CatGPT App, or skip this step if you just want an app and go to step 5
 Start the CatGPT app using Electron:
 ```
 npm start
