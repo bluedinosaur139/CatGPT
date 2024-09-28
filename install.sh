@@ -23,9 +23,9 @@ install_debian() {
     npm install electron
 
     echo "Cloning the repository..."
-    git clone https://github.com/bluedinosaur139/catgpt.git
+    git clone https://github.com/bluedinosaur139/catgpt.git ~/catgpt
 
-    cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+    cd ~/catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
     echo "Installing dependencies..."
     npm install
@@ -33,10 +33,10 @@ install_debian() {
     echo "Building the app..."
     npm run build
 
-    # Set correct permissions for the build folder
-    chmod -R 755 CatGPT-linux-x64/
+    echo "Moving build to desired directory..."
+    mv CatGPT-linux-x64 ~/CatGPTApp
 
-    echo "CatGPT has been installed successfully."
+    echo "CatGPT has been installed successfully at ~/CatGPTApp."
 }
 
 # Function to install on Arch-based systems
@@ -50,9 +50,9 @@ install_arch() {
     npm install electron-packager --save-dev
 
     echo "Cloning the repository..."
-    git clone https://github.com/bluedinosaur139/catgpt.git
+    git clone https://github.com/bluedinosaur139/catgpt.git ~/catgpt
 
-    cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+    cd ~/catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
     echo "Installing dependencies..."
     npm install
@@ -60,10 +60,10 @@ install_arch() {
     echo "Building the app..."
     npm run build
 
-    # Set correct permissions for the build folder
-    chmod -R 755 CatGPT-linux-x64/
+    echo "Moving build to desired directory..."
+    mv CatGPT-linux-x64 ~/CatGPTApp
 
-    echo "CatGPT has been installed successfully."
+    echo "CatGPT has been installed successfully at ~/CatGPTApp."
 }
 
 # Check for the type of Linux distribution
