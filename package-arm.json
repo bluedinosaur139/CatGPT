@@ -1,0 +1,18 @@
+{
+  "name": "catgpt-electron",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . CatGPT --platform=linux -- arch=arm64 --overwrite --icon=./CatGPTIcon.png --extra-resource=./resources",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^32.1.2",
+    "electron-packager": "^17.1.2"
+  }
+}
