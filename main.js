@@ -50,7 +50,7 @@ app.whenReady().then(() => {
             rec.free();
             
             // Play a sound once transcription is done
-            exec('aplay /path/to/ding-sound.wav', (error) => {
+            exec('aplay /gome/gamer/ding-sound.wav', (error) => {
                 if (error) {
                     console.error(`Error playing sound: ${error}`);
                 }
