@@ -34,7 +34,7 @@ app.whenReady().then(() => {
     app.on('ready', () => {
         const rec = new vosk.Recognizer({ model: model, sampleRate: 16000 });
         
-        const audioFilePath = 'path/to/audio.wav'; // Your audio file
+        const audioFilePath = /home/gamer; // Your audio file
         const wfStream = fs.createReadStream(audioFilePath, { highWaterMark: 4096 });
 
         wfStream.on('data', (data) => {
