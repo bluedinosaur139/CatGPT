@@ -26,6 +26,9 @@ install_debian() {
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
+    echo "Fixing permissions..."
+    sudo chown -R $USER:$USER ./
+
     echo "Installing dependencies..."
     npm install
 
@@ -61,6 +64,9 @@ install_arch() {
     git clone https://github.com/bluedinosaur139/catgpt.git
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+
+    echo "Fixing permissions..."
+    sudo chown -R $USER:$USER ./
 
     echo "Installing dependencies..."
     npm install
