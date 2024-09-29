@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-packager . CatGPT --platform=linux --arch=arm64 --arch=x64 --overwrite --icon=./CatGPTIcon.png --extra-resource=./resources",
-    "test": "mocha"
+    "test": "mocha 'test/**/*.js'"
   },
   "keywords": [],
   "author": "",
