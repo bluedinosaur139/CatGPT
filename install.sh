@@ -30,13 +30,19 @@ install_debian() {
     npm install
 
     echo "Cleaning up previous builds..."
-    sudo rm -rf ./CatGPT-linux-x64 || true
+    sudo rm -rf ./CatGPT-linux-* || true
 
     echo "Building the app..."
     npm run build
 
-    # Fix permissions on the build directory
-    sudo chmod -R 755 ./CatGPT-linux-x64
+    # Fix permissions on the build directory based on architecture
+    if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+        echo "Fixing permissions for ARM build..."
+        sudo chmod -R 755 ./CatGPT-linux-arm64
+    else
+        echo "Fixing permissions for x64 build..."
+        sudo chmod -R 755 ./CatGPT-linux-x64
+    fi
 
     echo "CatGPT has been installed successfully."
 }
