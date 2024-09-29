@@ -2,10 +2,10 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const vosk = require('vosk');
 const fs = require('fs');
-const { Readable } = require('stream');
+const { exec } = require('child_process'); // For sound execution
 
 // Path to your Vosk model directory
-const MODEL_PATH = path.join(__dirname, 'path/to/your/vosk-model');
+const MODEL_PATH = path.join(__dirname, 'vosk-model-small-en-us-0.15');
 
 vosk.setLogLevel(0);
 const model = new vosk.Model(MODEL_PATH);
@@ -33,8 +33,8 @@ app.whenReady().then(() => {
     // Example for using Vosk to transcribe audio
     app.on('ready', () => {
         const rec = new vosk.Recognizer({ model: model, sampleRate: 16000 });
-        
-        const audioFilePath = /home/gamer; // Your audio file
+
+        const audioFilePath = path.join(__dirname, 'path/to/your/audio.wav'); // Adjust to the correct path
         const wfStream = fs.createReadStream(audioFilePath, { highWaterMark: 4096 });
 
         wfStream.on('data', (data) => {
@@ -48,6 +48,13 @@ app.whenReady().then(() => {
         wfStream.on('end', () => {
             console.log(rec.finalResult());
             rec.free();
+            
+            // Play a sound once transcription is done
+            exec('aplay /path/to/ding-sound.wav', (error) => {
+                if (error) {
+                    console.error(`Error playing sound: ${error}`);
+                }
+            });
         });
     });
 });
