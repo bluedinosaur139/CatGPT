@@ -7,10 +7,14 @@
     "build": "electron-packager . CatGPT --platform=linux --arch=arm64 --arch=x64 --overwrite --icon=./CatGPTIcon.png --extra-resource=./resources",
     "test": "mocha 'test/**/*.js'"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chatgpt", "linux", "electron", "standalone", "catgpt"],
+  "author": "Your Name <your.email@example.com>",
   "license": "ISC",
-  "description": "",
+  "description": "world's first standalone chatgpt app for linux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluedinosaur139/catgpt.git"
+  },
   "devDependencies": {
     "electron": "^32.1.2",
     "electron-packager": "^17.1.2",
