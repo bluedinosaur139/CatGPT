@@ -21,6 +21,10 @@ create_desktop_entry() {
     mkdir -p ~/.local/share/applications
     mkdir -p ~/.local/bin
 
+    # Fix permissions for ~/.local/share/applications and ~/.local/bin
+    sudo chmod -R 755 ~/.local/share/applications
+    sudo chmod -R 755 ~/.local/bin
+
     # Create the launcher script based on architecture
     echo "#!/bin/bash" > $LAUNCHER_SCRIPT
     if [ "$ARCH" == "x86_64" ]; then
@@ -48,11 +52,14 @@ Type=Application
 Categories=Utility;
 EOF
 
-    # Make the .desktop file executable
-    chmod +x $DESKTOP_FILE
+    # Fix permissions for the .desktop file
+    sudo chmod 755 $DESKTOP_FILE
 
     # Copy the .desktop file to the desktop
     cp $DESKTOP_FILE $DESKTOP_ICON
+
+    # Fix permissions for the desktop icon
+    sudo chmod 755 $DESKTOP_ICON
 
     # Optional: Update the desktop database (for some desktop environments)
     update-desktop-database ~/.local/share/applications/ 2>/dev/null
@@ -79,6 +86,7 @@ install_debian() {
 
     echo "Fixing permissions for the repository..."
     sudo chown -R $USER:$USER ./
+    sudo chmod -R 755 ./  # Fix permissions
 
     echo "Installing dependencies..."
     npm install
@@ -123,6 +131,7 @@ install_arch() {
 
     echo "Fixing permissions for the repository..."
     sudo chown -R $USER:$USER ./
+    sudo chmod -R 755 ./  # Fix permissions
 
     echo "Installing dependencies..."
     npm install
