@@ -56,10 +56,10 @@ EOF
     sudo chmod 755 $DESKTOP_FILE
 
     # Copy the .desktop file to the desktop
-    cp $DESKTOP_FILE $DESKTOP_ICON
+    cp $DESKTOP_FILE ~/Desktop/catgpt.desktop
 
     # Fix permissions for the desktop icon
-    sudo chmod 755 $DESKTOP_ICON
+    chmod 755 ~/Desktop/catgpt.desktop
 
     # Optional: Update the desktop database (for some desktop environments)
     update-desktop-database ~/.local/share/applications/ 2>/dev/null
