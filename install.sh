@@ -4,35 +4,31 @@
 # Detect the system architecture
 ARCH=$(uname -m)
 
-# Check if the user is root
-if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root (use sudo)."
-    exit
-fi
+# Preserve the original user's home directory
+USER_HOME=$(eval echo ~$SUDO_USER)
 
 # Function to create the desktop entry and launcher script
 create_desktop_entry() {
     APP_NAME="CatGPT"
-    DESKTOP_FILE="$HOME/.local/share/applications/catgpt.desktop"
-    LAUNCHER_SCRIPT="$HOME/.local/bin/catgpt-launcher.sh"
-    ICON_PATH="${HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
+    DESKTOP_FILE="$USER_HOME/.local/share/applications/catgpt.desktop"
+    LAUNCHER_SCRIPT="$USER_HOME/.local/bin/catgpt-launcher.sh"
+    ICON_PATH="${USER_HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
     DESKTOP_ICON="$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
+    # Create necessary directories as the user
+    mkdir -p "$USER_HOME/.local/share/applications"
+    mkdir -p "$USER_HOME/.local/bin"
 
-    # Create necessary directories
-    mkdir -p ~/.local/share/applications
-    mkdir -p ~/.local/bin
-
-    # Fix permissions for ~/.local/share/applications and ~/.local/bin
-    sudo chmod -R 755 ~/.local/share/applications
-    sudo chmod -R 755 ~/.local/bin
+    # Fix permissions for the user's local directories (no sudo needed)
+    chmod -R 755 "$USER_HOME/.local/share/applications"
+    chmod -R 755 "$USER_HOME/.local/bin"
 
     # Create the launcher script based on architecture
     echo "#!/bin/bash" > $LAUNCHER_SCRIPT
     if [ "$ARCH" == "x86_64" ]; then
-        echo "/path/to/catgpt-x64" >> $LAUNCHER_SCRIPT
+        echo "${USER_HOME}/catgpt/CatGPT-linux-x64/CatGPT" >> $LAUNCHER_SCRIPT
     elif [ "$ARCH" == "aarch64" ]; then
-        echo "/path/to/catgpt-arm64" >> $LAUNCHER_SCRIPT
+        echo "${USER_HOME}/catgpt/CatGPT-linux-arm64/CatGPT" >> $LAUNCHER_SCRIPT
     else
         echo "Unsupported architecture: $ARCH" >> $LAUNCHER_SCRIPT
         exit 1
@@ -41,38 +37,38 @@ create_desktop_entry() {
     # Make the launcher script executable
     chmod +x $LAUNCHER_SCRIPT
 
-   # Create the .desktop file
-cat <<EOF > $DESKTOP_FILE
+    # Create the .desktop file
+    cat <<EOF > $DESKTOP_FILE
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
 Comment=Standalone ChatGPT App
 Exec=$LAUNCHER_SCRIPT %U
-Icon=${HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png
+Icon=${ICON_PATH}
 Terminal=false
 Type=Application
 Categories=Utility;
 EOF
 
-# Verify if the file was created
-if [ -f "$DESKTOP_FILE" ]; then
-    echo "Desktop file created: $DESKTOP_FILE"
-else
-    echo "Failed to create the .desktop file."
-    exit 1
-fi
+    # Verify if the file was created
+    if [ -f "$DESKTOP_FILE" ]; then
+        echo "Desktop file created: $DESKTOP_FILE"
+    else
+        echo "Failed to create the .desktop file."
+        exit 1
+    fi
 
     # Fix permissions for the .desktop file
-    sudo chmod 755 $DESKTOP_FILE
+    chmod 755 $DESKTOP_FILE
 
     # Copy the .desktop file to the desktop
-    cp $DESKTOP_FILE ~/Desktop/catgpt.desktop
+    cp $DESKTOP_FILE "$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
     # Fix permissions for the desktop icon
-    chmod 755 ~/Desktop/catgpt.desktop
+    chmod 755 "$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
     # Optional: Update the desktop database (for some desktop environments)
-    update-desktop-database ~/.local/share/applications/ 2>/dev/null
+    update-desktop-database "$USER_HOME/.local/share/applications/" 2>/dev/null
 
     echo "$APP_NAME desktop entry created and placed on the desktop."
 }
