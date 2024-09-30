@@ -16,7 +16,8 @@ create_desktop_entry() {
     DESKTOP_FILE="$HOME/.local/share/applications/catgpt.desktop"
     LAUNCHER_SCRIPT="$HOME/.local/bin/catgpt-launcher.sh"
     ICON_PATH="${HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
-    DESKTOP_ICON="$HOME/Desktop/catgpt.desktop"
+    DESKTOP_ICON="$(xdg-user-dir DESKTOP)/catgpt.desktop"
+
 
     # Create necessary directories
     mkdir -p ~/.local/share/applications
