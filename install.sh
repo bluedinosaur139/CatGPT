@@ -9,6 +9,57 @@ if [ "$EUID" -ne 0 ]; then
     exit
 fi
 
+# Function to create the desktop entry and launcher script
+create_desktop_entry() {
+    APP_NAME="CatGPT"
+    DESKTOP_FILE="$HOME/.local/share/applications/catgpt.desktop"
+    LAUNCHER_SCRIPT="$HOME/.local/bin/catgpt-launcher.sh"
+    ICON_PATH="/path/to/catgpt-icon.png"
+    DESKTOP_ICON="$HOME/Desktop/catgpt.desktop"
+
+    # Create necessary directories
+    mkdir -p ~/.local/share/applications
+    mkdir -p ~/.local/bin
+
+    # Create the launcher script based on architecture
+    echo "#!/bin/bash" > $LAUNCHER_SCRIPT
+    if [ "$ARCH" == "x86_64" ]; then
+        echo "/path/to/catgpt-x64" >> $LAUNCHER_SCRIPT
+    elif [ "$ARCH" == "aarch64" ]; then
+        echo "/path/to/catgpt-arm64" >> $LAUNCHER_SCRIPT
+    else
+        echo "Unsupported architecture: $ARCH" >> $LAUNCHER_SCRIPT
+        exit 1
+    fi
+
+    # Make the launcher script executable
+    chmod +x $LAUNCHER_SCRIPT
+
+    # Create the .desktop file
+    cat <<EOF > $DESKTOP_FILE
+[Desktop Entry]
+Version=1.0
+Name=$APP_NAME
+Comment=Standalone ChatGPT App
+Exec=$LAUNCHER_SCRIPT %U
+Icon=$ICON_PATH
+Terminal=false
+Type=Application
+Categories=Utility;
+EOF
+
+    # Make the .desktop file executable
+    chmod +x $DESKTOP_FILE
+
+    # Copy the .desktop file to the desktop
+    cp $DESKTOP_FILE $DESKTOP_ICON
+
+    # Optional: Update the desktop database (for some desktop environments)
+    update-desktop-database ~/.local/share/applications/ 2>/dev/null
+
+    echo "$APP_NAME desktop entry created and placed on the desktop."
+}
+
 # Function to install on Debian-based systems
 install_debian() {
     echo "Detected Debian-based system."
@@ -50,6 +101,9 @@ install_debian() {
     fi
 
     echo "CatGPT has been installed successfully."
+
+    # Call the function to create the desktop entry
+    create_desktop_entry
 }
 
 # Function to install on Arch-based systems
@@ -84,6 +138,9 @@ install_arch() {
     chmod -R 755 ./CatGPT-linux-x64
 
     echo "CatGPT has been installed successfully."
+
+    # Call the function to create the desktop entry
+    create_desktop_entry
 }
 
 # Check for the type of Linux distribution
