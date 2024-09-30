@@ -14,7 +14,7 @@ create_desktop_entry() {
     APP_NAME="CatGPT"
     DESKTOP_FILE="$HOME/.local/share/applications/catgpt.desktop"
     LAUNCHER_SCRIPT="$HOME/.local/bin/catgpt-launcher.sh"
-    ICON_PATH="/path/to/catgpt-icon.png"
+    ICON_PATH="${HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
     DESKTOP_ICON="$HOME/Desktop/catgpt.desktop"
 
     # Create necessary directories
@@ -39,14 +39,14 @@ create_desktop_entry() {
     # Make the launcher script executable
     chmod +x $LAUNCHER_SCRIPT
 
-    # Create the .desktop file
-    cat <<EOF > $DESKTOP_FILE
+   # Create the .desktop file
+cat <<EOF > $DESKTOP_FILE
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
 Comment=Standalone ChatGPT App
 Exec=$LAUNCHER_SCRIPT %U
-Icon=$ICON_PATH
+Icon=${HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png
 Terminal=false
 Type=Application
 Categories=Utility;
