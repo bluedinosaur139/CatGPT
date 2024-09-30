@@ -54,6 +54,14 @@ Type=Application
 Categories=Utility;
 EOF
 
+# Verify if the file was created
+if [ -f "$DESKTOP_FILE" ]; then
+    echo "Desktop file created: $DESKTOP_FILE"
+else
+    echo "Failed to create the .desktop file."
+    exit 1
+fi
+
     # Fix permissions for the .desktop file
     sudo chmod 755 $DESKTOP_FILE
 
