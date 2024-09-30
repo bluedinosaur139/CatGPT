@@ -142,11 +142,18 @@ install_arch() {
     echo "Building the app..."
     npm run build
 
-    # Fix permissions on the build directory
-    sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
-    chmod -R 755 ./CatGPT-linux-x64
+    # Fix permissions on the build directory based on architecture
+    if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+        echo "Fixing permissions for ARM build..."
+        sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
+        chmod -R 755 ./CatGPT-linux-arm64
+    else
+        echo "Fixing permissions for x64 build..."
+        sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
+        chmod -R 755 ./CatGPT-linux-x64
+    fi
 
-    echo "CatGPT has been installed successfully."
+    echo "CatGPT has been built and permissions fixed."
 
     # Call the function to create the desktop entry
     create_desktop_entry
