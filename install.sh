@@ -12,7 +12,9 @@ create_desktop_entry() {
     APP_NAME="CatGPT"
     DESKTOP_FILE="$USER_HOME/.local/share/applications/catgpt.desktop"
     LAUNCHER_SCRIPT="$USER_HOME/.local/bin/catgpt-launcher.sh"
-    ICON_PATH="${USER_HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
+    
+    # Updated path for the icon
+    ICON_PATH="${USER_HOME}/catgpt/catgpt/CatGPT-linux-x64/resources/app/CatGPTIcon.png"
     DESKTOP_ICON="$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
     # Create necessary directories as the user
@@ -26,7 +28,7 @@ create_desktop_entry() {
     # Create the launcher script based on architecture
     echo "#!/bin/bash" > $LAUNCHER_SCRIPT
     if [ "$ARCH" == "x86_64" ]; then
-        echo "${USER_HOME}/catgpt/CatGPT-linux-x64/CatGPT" >> $LAUNCHER_SCRIPT
+        echo "${USER_HOME}/catgpt/catgpt/CatGPT-linux-x64/CatGPT" >> $LAUNCHER_SCRIPT
     elif [ "$ARCH" == "aarch64" ]; then
         echo "${USER_HOME}/catgpt/CatGPT-linux-arm64/CatGPT" >> $LAUNCHER_SCRIPT
     else
@@ -44,7 +46,7 @@ Version=1.0
 Name=$APP_NAME
 Comment=Standalone ChatGPT App
 Exec=$LAUNCHER_SCRIPT %U
-Icon=${ICON_PATH}
+Icon=$ICON_PATH
 Terminal=false
 Type=Application
 Categories=Utility;
@@ -72,6 +74,7 @@ EOF
 
     echo "$APP_NAME desktop entry created and placed on the desktop."
 }
+
 
 # Function to install on Debian-based systems
 install_debian() {
