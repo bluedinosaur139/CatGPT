@@ -14,7 +14,7 @@ create_desktop_entry() {
     LAUNCHER_SCRIPT="$USER_HOME/.local/bin/catgpt-launcher.sh"
     
     # Updated path for the icon
-    ICON_PATH="${USER_HOME}/catgpt/catgpt/CatGPT-linux-x64/resources/CatGPTIcon.png"
+    ICON_PATH="${USER_HOME}/catgpt/catgpt/CatGPT-linux-x64/resources/resources/CatGPTIcon.png"
     DESKTOP_ICON="$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
     # Create necessary directories as the user
