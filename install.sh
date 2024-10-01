@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Detect the system architecture
@@ -27,26 +26,17 @@ install_debian() {
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
-    echo "Fixing permissions..."
-    sudo chown -R $USER:$USER ./
-
     echo "Installing dependencies..."
     npm install
 
     echo "Cleaning up previous builds..."
-    sudo rm -rf ./CatGPT-linux-* || true
+    sudo rm -rf ./CatGPT-linux-x64 || true
 
     echo "Building the app..."
     npm run build
 
-    # Fix permissions on the build directory based on architecture
-    if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-        echo "Fixing permissions for ARM build..."
-        sudo chmod -R 755 ./CatGPT-linux-arm64
-    else
-        echo "Fixing permissions for x64 build..."
-        sudo chmod -R 755 ./CatGPT-linux-x64
-    fi
+    # Fix permissions on the build directory
+    sudo chmod -R 755 ./CatGPT-linux-x64
 
     echo "CatGPT has been installed successfully."
 }
@@ -65,9 +55,6 @@ install_arch() {
     git clone https://github.com/bluedinosaur139/catgpt.git
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
-
-    echo "Fixing permissions..."
-    sudo chown -R $USER:$USER ./
 
     echo "Installing dependencies..."
     npm install
