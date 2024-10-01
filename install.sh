@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Detect the system architecture
@@ -75,7 +74,6 @@ EOF
     echo "$APP_NAME desktop entry created and placed on the desktop."
 }
 
-
 # Function to install on Debian-based systems
 install_debian() {
     echo "Detected Debian-based system."
@@ -111,7 +109,7 @@ install_debian() {
         echo "Fixing permissions for ARM build..."
         sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
         chmod -R 755 ./CatGPT-linux-arm64
-    else
+    elif [[ "$ARCH" == "x86_64" ]]; then
         echo "Fixing permissions for x64 build..."
         sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
         chmod -R 755 ./CatGPT-linux-x64
@@ -156,7 +154,7 @@ install_arch() {
         echo "Fixing permissions for ARM build..."
         sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
         chmod -R 755 ./CatGPT-linux-arm64
-    else
+    elif [[ "$ARCH" == "x86_64" ]]; then
         echo "Fixing permissions for x64 build..."
         sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
         chmod -R 755 ./CatGPT-linux-x64
