@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # Detect the system architecture
@@ -13,26 +12,13 @@ create_desktop_entry() {
     DESKTOP_FILE="$USER_HOME/.local/share/applications/catgpt.desktop"
     LAUNCHER_SCRIPT="$USER_HOME/.local/bin/catgpt-launcher.sh"
     ICON_PATH="${USER_HOME}/catgpt/CatGPT-linux-${ARCH}/resources/app/CatGPTIcon.png"
-    DESKTOP_ICON="$(xdg-user-dir DESKTOP)/catgpt.desktop"
 
     # Create necessary directories as the user
-    mkdir -p "$USER_HOME/.local/share/applications"
-    mkdir -p "$USER_HOME/.local/bin"
-
-    # Fix permissions for the user's local directories (no sudo needed)
-    chmod -R 755 "$USER_HOME/.local/share/applications"
-    chmod -R 755 "$USER_HOME/.local/bin"
+    mkdir -p "$USER_HOME/.local/share/applications" "$USER_HOME/.local/bin"
 
     # Create the launcher script based on architecture
     echo "#!/bin/bash" > $LAUNCHER_SCRIPT
-    if [ "$ARCH" == "x86_64" ]; then
-        echo "${USER_HOME}/catgpt/CatGPT-linux-x64/CatGPT" >> $LAUNCHER_SCRIPT
-    elif [ "$ARCH" == "aarch64" ]; then
-        echo "${USER_HOME}/catgpt/CatGPT-linux-arm64/CatGPT" >> $LAUNCHER_SCRIPT
-    else
-        echo "Unsupported architecture: $ARCH" >> $LAUNCHER_SCRIPT
-        exit 1
-    fi
+    echo "${USER_HOME}/catgpt/CatGPT-linux-${ARCH}/CatGPT" >> $LAUNCHER_SCRIPT
 
     # Make the launcher script executable
     chmod +x $LAUNCHER_SCRIPT
@@ -50,118 +36,70 @@ Type=Application
 Categories=Utility;
 EOF
 
-    # Verify if the file was created
-    if [ -f "$DESKTOP_FILE" ]; then
-        echo "Desktop file created: $DESKTOP_FILE"
-    else
-        echo "Failed to create the .desktop file."
-        exit 1
-    fi
-
     # Fix permissions for the .desktop file
     chmod 755 $DESKTOP_FILE
 
-    # Copy the .desktop file to the desktop
-    cp $DESKTOP_FILE "$(xdg-user-dir DESKTOP)/catgpt.desktop"
-
-    # Fix permissions for the desktop icon
-    chmod 755 "$(xdg-user-dir DESKTOP)/catgpt.desktop"
-
-    # Optional: Update the desktop database (for some desktop environments)
+    # Optional: Update the desktop database
     update-desktop-database "$USER_HOME/.local/share/applications/" 2>/dev/null
 
-    echo "$APP_NAME desktop entry created and placed on the desktop."
+    echo "$APP_NAME desktop entry created."
 }
 
 # Function to install on Debian-based systems
 install_debian() {
     echo "Detected Debian-based system."
-    echo "Updating package lists..."
     sudo apt update
-
-    echo "Installing nodejs and npm..."
     sudo apt install -y npm nodejs
-
-    echo "Installing Electron..."
     npm install electron
-
-    echo "Cloning the repository..."
     git clone https://github.com/bluedinosaur139/catgpt.git
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
-
-    echo "Fixing permissions for the repository..."
     sudo chown -R $USER:$USER ./
-    sudo chmod -R 755 ./  # Fix permissions
+    sudo chmod -R 755 ./
 
-    echo "Installing dependencies..."
     npm install
-
-    echo "Cleaning up previous builds..."
-    rm -rf ./CatGPT-linux-* || true  # Removing sudo for rm is safer
-
-    echo "Building the app..."
+    rm -rf ./CatGPT-linux-* || true
     npm run build
 
-    # Fix permissions on the build directory based on architecture
+    # Fix permissions on the build directory
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-        echo "Fixing permissions for ARM build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
+        sudo chown -R $USER:$USER ./CatGPT-linux-arm64
         chmod -R 755 ./CatGPT-linux-arm64
     else
-        echo "Fixing permissions for x64 build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
+        sudo chown -R $USER:$USER ./CatGPT-linux-x64
         chmod -R 755 ./CatGPT-linux-x64
     fi
 
     echo "CatGPT has been installed successfully."
-
-    # Call the function to create the desktop entry
     create_desktop_entry
 }
 
 # Function to install on Arch-based systems
 install_arch() {
     echo "Detected Arch-based system."
-    echo "Installing nodejs and npm..."
     sudo pacman -S --noconfirm nodejs npm
-
-    echo "Installing Electron and Electron Packager..."
     npm install electron --save-dev
     npm install electron-packager --save-dev
-
-    echo "Cloning the repository..."
     git clone https://github.com/bluedinosaur139/catgpt.git
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
-
-    echo "Fixing permissions for the repository..."
     sudo chown -R $USER:$USER ./
-    sudo chmod -R 755 ./  # Fix permissions
+    sudo chmod -R 755 ./
 
-    echo "Installing dependencies..."
     npm install
-
-    echo "Cleaning up previous builds..."
-    rm -rf ./CatGPT-linux-x64 || true  # Removing sudo for rm is safer
-
-    echo "Building the app..."
+    rm -rf ./CatGPT-linux-x64 || true
     npm run build
 
-    # Fix permissions on the build directory based on architecture
+    # Fix permissions on the build directory
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-        echo "Fixing permissions for ARM build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
+        sudo chown -R $USER:$USER ./CatGPT-linux-arm64
         chmod -R 755 ./CatGPT-linux-arm64
     else
-        echo "Fixing permissions for x64 build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
+        sudo chown -R $USER:$USER ./CatGPT-linux-x64
         chmod -R 755 ./CatGPT-linux-x64
     fi
 
     echo "CatGPT has been built and permissions fixed."
-
-    # Call the function to create the desktop entry
     create_desktop_entry
 }
 
