@@ -38,6 +38,13 @@ create_desktop_entry() {
     # Make the launcher script executable
     chmod +x $LAUNCHER_SCRIPT
 
+    # Suppress XDG warnings for Debian
+    if [ -f /etc/debian_version ]; then
+        export XDG_DATA_HOME="$USER_HOME/.local/share"
+        export XDG_CONFIG_HOME="$USER_HOME/.config"
+        export XDG_CACHE_HOME="$USER_HOME/.cache"
+    fi
+
     # Create the .desktop file
     cat <<EOF > $DESKTOP_FILE
 [Desktop Entry]
@@ -73,6 +80,7 @@ EOF
 
     echo "$APP_NAME desktop entry created and placed on the desktop."
 }
+
 
 # Function to install on Debian-based systems
 install_debian() {
