@@ -1,7 +1,7 @@
 
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
-Either follow the guide and skip this command block or use this one command block to automate install:
+Use this one command block to automate install:
 
 ```
 git clone https://github.com/bluedinosaur139/catgpt.git
@@ -10,9 +10,14 @@ sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
-It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with above command.
+It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with this command.
 
-Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality.
+```
+sudo chmod +x install.sh
+sudo ./install.sh
+```
+
+Now includes both x64 and ARM by default simply use which ever version you have after the npm run build command!! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality., simply search for CatGPT and pin it to taskbar or desktop!
 
 This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. Microphone dictation support is coming soon, with ongoing development planned. This repository will eventually be just one of the neat apps I make for my operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience. See my CatGPT-OS repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
 
@@ -20,65 +25,6 @@ My own personal take: no onther version of ChatGPT on linux runs this well, brav
 
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
-CatGPT App Installation Guide
-Prerequisites
-Before starting, ensure you have the following installed on your system:
-
-debian only:
-
-```
-sudo apt update
-sudo apt install npm nodejs
-npm install electron
-
-```
-
-If you use Arch BTW:
-
-```
-sudo pacman -S nodejs npm
-```
-
-```
-npm install electron --save-dev
-npm install electron-packager --save-dev
-```
-
-1. Clone the Repository
-First, clone the CatGPT repository to your local machine:
-
-```
-git clone https://github.com/bluedinosaur139/catgpt.git
-```
-
-2. Navigate to the Project Directory
-Move into the directory where you cloned the repository:
-
-```
-cd catgpt
-```
-
-3. Install Dependencies
-Install all the required dependencies for Electron and the app using NPM:
-
-```
-npm install
-```
-
-4. Run the CatGPT App, or skip this step if you just want an app and go to step 5.
-
-Start the CatGPT app using Electron:
-
-```
-npm start
-```
-
-5. Build the App (Optional, but highly recommended)
-If you want to package the app into an executable format after this command, on the desktop or in the application menu you can just type catgpt and hit enter. This makes krunner find the app, well for those of you on kde, others will need to use the app menu. You can then pin the app to task manager to have easy access, and the icon is pretty darn cute if i say so myself.
-
-```
-npm run build
-```
 
 Dependencies
 Electron: This is the main framework used to build and run the app. You should not need this step if you followed the guide, this is here for informational purposes. Install via:
