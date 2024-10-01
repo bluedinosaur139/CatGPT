@@ -13,6 +13,7 @@ sudo ./install.sh
 It will also be included in the releases section. For ease of use. Choose latest release, extract and run the installer with this command.
 
 ```
+if [ -f catgpt-*.zip ]; then unzip -o catgpt-*; else tar -xzf catgpt-*.tar.gz; fi
 sudo chmod +x install.sh
 sudo ./install.sh
 ```
