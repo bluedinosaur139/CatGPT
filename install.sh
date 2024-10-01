@@ -27,14 +27,14 @@ install_debian() {
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
-    echo "Fixing permissions for the repository..."
+    echo "Fixing permissions..."
     sudo chown -R $USER:$USER ./
 
     echo "Installing dependencies..."
     npm install
 
     echo "Cleaning up previous builds..."
-    rm -rf ./CatGPT-linux-* || true  # Removing sudo for rm is safer
+    sudo rm -rf ./CatGPT-linux-* || true
 
     echo "Building the app..."
     npm run build
@@ -42,12 +42,10 @@ install_debian() {
     # Fix permissions on the build directory based on architecture
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
         echo "Fixing permissions for ARM build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
-        chmod -R 755 ./CatGPT-linux-arm64
+        sudo chmod -R 755 ./CatGPT-linux-arm64
     else
         echo "Fixing permissions for x64 build..."
-        sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
-        chmod -R 755 ./CatGPT-linux-x64
+        sudo chmod -R 755 ./CatGPT-linux-x64
     fi
 
     echo "CatGPT has been installed successfully."
@@ -68,21 +66,20 @@ install_arch() {
 
     cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
 
-    echo "Fixing permissions for the repository..."
+    echo "Fixing permissions..."
     sudo chown -R $USER:$USER ./
 
     echo "Installing dependencies..."
     npm install
 
     echo "Cleaning up previous builds..."
-    rm -rf ./CatGPT-linux-x64 || true  # Removing sudo for rm is safer
+    sudo rm -rf ./CatGPT-linux-x64 || true
 
     echo "Building the app..."
     npm run build
 
     # Fix permissions on the build directory
-    sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
-    chmod -R 755 ./CatGPT-linux-x64
+    sudo chmod -R 755 ./CatGPT-linux-x64
 
     echo "CatGPT has been installed successfully."
 }
