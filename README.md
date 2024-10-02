@@ -68,4 +68,10 @@ Creating this app is a milestone for Linux users and developers alike. It's the 
 
 For those looking to get into development, this kind of collaboration between AI and humans could be a game-changer. ChatGPT can offer real-time solutions, help explain tricky concepts, and support both beginners and experienced developers. If you're interested in coding but don't know where to start, working with AI tools like ChatGPT can remove a lot of the uncertainty and speed up your learning curve.
 
+CatGPT-OS is on the way soon after my other apps are done:
+![Screenshot_20241002_161750](https://github.com/user-attachments/assets/72a2bb1a-9ad8-4d65-bf59-c7c09885a80b)
+![Screenshot_20241002_163052](https://github.com/user-attachments/assets/a56a8498-f833-4485-a961-16bece2ca6a9)
+
+
+
 This entire process—starting from scratch, developing, packaging, and releasing—is something achievable by anyone with a passion for development and the willingness to learn. It's more accessible than ever, and you're not alone in the journey.
