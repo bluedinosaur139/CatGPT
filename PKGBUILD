@@ -16,5 +16,18 @@ build() {
 
 package() {
     cd "$srcdir/$pkgname-$pkgver"
-    install -Dm755 "path-to-your-output" "$pkgdir/usr/bin/catgpt"  # Change "path-to-your-output" to your actual build output directory
+    
+    # Assuming Electron Packager output directory is something like:
+    # ./dist/CatGPT-linux-x64/ for x64 architecture
+    # ./dist/CatGPT-linux-arm64/ for ARM architecture
+
+    if [ "$CARCH" == "x86_64" ]; then
+        install -Dm755 "dist/CatGPT-linux-x64/CatGPT" "$pkgdir/usr/bin/catgpt"
+    elif [ "$CARCH" == "aarch64" ]; then
+        install -Dm755 "dist/CatGPT-linux-arm64/CatGPT" "$pkgdir/usr/bin/catgpt"
+    else
+        echo "Unsupported architecture: $CARCH"
+        exit 1
+    fi
 }
+
