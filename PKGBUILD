@@ -16,15 +16,17 @@ build() {
 
 package() {
     cd "$srcdir/$pkgname-$pkgver"
-
-    # Correct paths for where Electron Packager output is stored
+    
     if [ "$CARCH" == "x86_64" ]; then
-        install -Dm755 "$srcdir/$pkgname-$pkgver/CatGPT-linux-x64/CatGPT" "$pkgdir/usr/bin/catgpt"
+        install -Dm755 "CatGPT-linux-x64/CatGPT" "$pkgdir/usr/bin/catgpt"
+        install -Dm644 "path/to/downloaded/libffmpeg.so" "$pkgdir/usr/lib/catgpt/libffmpeg.so"
     elif [ "$CARCH" == "aarch64" ]; then
-        install -Dm755 "$srcdir/$pkgname-$pkgver/CatGPT-linux-arm64/CatGPT" "$pkgdir/usr/bin/catgpt"
+        install -Dm755 "CatGPT-linux-arm64/CatGPT" "$pkgdir/usr/bin/catgpt"
+        install -Dm644 "path/to/downloaded/libffmpeg.so" "$pkgdir/usr/lib/catgpt/libffmpeg.so"
     else
         echo "Unsupported architecture: $CARCH"
         exit 1
     fi
 }
+
 
