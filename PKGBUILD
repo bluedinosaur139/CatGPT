@@ -1,5 +1,5 @@
 pkgname=catgpt
-pkgver=1.0.0
+pkgver=$(curl -s https://api.github.com/repos/bluedinosaur139/catgpt/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
 pkgrel=1
 arch=('x86_64' 'aarch64')
 url="https://github.com/bluedinosaur139/catgpt"
@@ -16,7 +16,7 @@ build() {
 
 package() {
     cd "$srcdir/$pkgname-$pkgver"
-    
+
     # Assuming Electron Packager output directory is something like:
     # ./dist/CatGPT-linux-x64/ for x64 architecture
     # ./dist/CatGPT-linux-arm64/ for ARM architecture
@@ -30,4 +30,3 @@ package() {
         exit 1
     fi
 }
-
