@@ -33,6 +33,20 @@ My own personal take: no onther version of ChatGPT on linux runs this well, brav
 
 
 Dependencies
+
+Git:
+
+Arch:
+```
+sudo pacman -S git
+```
+
+Debian:
+```
+sudo apt install git
+```
+
+
 Electron: This is the main framework used to build and run the app. You should not need this step if you followed the guide, this is here for informational purposes. Install via:
 
 ```
