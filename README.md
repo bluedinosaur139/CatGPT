@@ -34,14 +34,14 @@ My own personal take: no onther version of ChatGPT on linux runs this well, brav
 
 Dependencies
 
-Git:
+Git, Electron
 
-Arch:
+Git install for Arch:
 ```
 sudo pacman -S git
 ```
 
-Debian:
+Git install for Debian:
 ```
 sudo apt install git
 ```
