@@ -45,7 +45,10 @@ Git install for Debian:
 ```
 sudo apt install git
 ```
-
+Git install for Fedora:
+```
+sudo dnf install git
+```
 
 Electron: This is the main framework used to build and run the app. You should not need this step if you followed the guide, this is here for informational purposes. Install via:
 
