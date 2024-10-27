@@ -81,7 +81,6 @@ EOF
     echo "$APP_NAME desktop entry created and placed on the desktop."
 }
 
-
 # Function to install on Debian-based systems
 install_debian() {
     echo "Detected Debian-based system."
@@ -174,13 +173,60 @@ install_arch() {
     create_desktop_entry
 }
 
+# Function to install on Fedora-based systems
+install_fedora() {
+    echo "Detected Fedora-based system."
+    echo "Installing nodejs, npm, and git..."
+    sudo dnf install -y nodejs npm git
+
+    echo "Installing Electron and Electron Packager..."
+    npm install electron --save-dev
+    npm install electron-packager --save-dev
+
+    echo "Cloning the repository..."
+    git clone https://github.com/bluedinosaur139/catgpt.git
+
+    cd catgpt || { echo "Failed to navigate to 'catgpt' directory."; exit 1; }
+
+    echo "Fixing permissions for the repository..."
+    sudo chown -R $USER:$USER ./
+    sudo chmod -R 755 ./  # Fix permissions
+
+    echo "Installing dependencies..."
+    npm install
+
+    echo "Cleaning up previous builds..."
+    rm -rf ./CatGPT-linux-x64 || true  # Removing sudo for rm is safer
+
+    echo "Building the app..."
+    npm run build
+
+    # Fix permissions on the build directory based on architecture
+    if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+        echo "Fixing permissions for ARM build..."
+        sudo chown -R $USER:$USER ./CatGPT-linux-arm64  # Ownership fix
+        chmod -R 755 ./CatGPT-linux-arm64
+    elif [[ "$ARCH" == "x86_64" ]]; then
+        echo "Fixing permissions for x64 build..."
+        sudo chown -R $USER:$USER ./CatGPT-linux-x64  # Ownership fix
+        chmod -R 755 ./CatGPT-linux-x64
+    fi
+
+    echo "CatGPT has been built and permissions fixed."
+
+    # Call the function to create the desktop entry
+    create_desktop_entry
+}
+
 # Check for the type of Linux distribution
 if [ -f /etc/debian_version ]; then
     install_debian
 elif [ -f /etc/arch-release ]; then
     install_arch
+elif [ -f /etc/fedora-release ]; then
+    install_fedora
 else
-    echo "Unsupported distribution. Only Debian and Arch-based systems are supported."
+    echo "Unsupported distribution. Only Debian, Arch, and Fedora-based systems are supported."
     exit 1
 fi
 
