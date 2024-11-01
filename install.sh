@@ -176,8 +176,8 @@ install_arch() {
 # Function to install on Fedora-based systems
 install_fedora() {
     echo "Detected Fedora-based system."
-    echo "Installing nodejs, npm, and git..."
-    sudo dnf install -y nodejs npm git
+    echo "Installing nodejs and npm..."
+    sudo dnf install -y nodejs npm
 
     echo "Installing Electron and Electron Packager..."
     npm install electron --save-dev
