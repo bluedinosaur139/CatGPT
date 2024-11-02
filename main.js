@@ -9,7 +9,7 @@ function createWindow() {
     icon: path.join(__dirname, 'resources/CatGPTIcon.png'), // Path to the app icon
     transparent: true,         // Enables window transparency
     frame: false,               // Optional: Removes window frame for a seamless look
-    backgroundColor: '#00000000', // Sets background to fully transparent
+    backgroundColor: '#00000080', // Sets background to fully transparent
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false    // Ensures compatibility with transparency settings
