@@ -138,9 +138,15 @@ if [ -f /etc/debian_version ]; then
 elif [ -f /etc/arch-release ]; then
     echo "Arch-based system detected."
     install_arch
-elif [ -f /etc/fedora-release ]; then
-    echo "Fedora-based system detected."
-    install_fedora
+elif [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [[ "$ID" == "fedora" || "$ID" == "nobara" ]]; then
+        echo "Fedora-based system detected."
+        install_fedora
+    else
+        echo "Unsupported distribution: $ID. Only Debian, Arch, and Fedora-based systems are supported."
+        exit 1
+    fi
 else
     echo "Unsupported distribution. Only Debian, Arch, and Fedora-based systems are supported."
     exit 1
