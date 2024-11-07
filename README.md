@@ -6,6 +6,10 @@ Brought to you by Zombie Fart Studios
 
 ![Screenshot_20240927_182936](https://github.com/user-attachments/assets/ee94a7f1-b0f2-4563-a3d9-619787aa4c68)
 
+This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. 
+Now includes both x64 and ARM by default ! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality. Search for CatGPT and pin it to taskbar or desktop!
+
+
 Use this one command block to automate install:
 
 ```
@@ -23,11 +27,6 @@ sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
-Now includes both x64 and ARM by default ! The output tells you where it is stored. Personally, I Tested on a pi 5 and still has full functionality. Search for CatGPT and pin it to taskbar or desktop!
-
-This is a custom-built application developed using Electron, providing full JavaScript capabilities for seamless integration with ChatGPT and KDE Plasma 6. This repository will eventually be just one of the neat apps I make for my operating system based on Arch and KDE, featuring an anime catgirl theme, with everything preconfigured for an out-of-the-box experience. See my CatGPT-OS repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
-
-My own personal take: no onther version of ChatGPT on linux runs this well, brave constantly has errors forcing you to refresh as the server load increases due to dropped packets, this app runs much better than any other browser based version try it and see!
 
 ![catgptlogo](https://github.com/user-attachments/assets/4244f634-501f-4fee-844b-97eae884006f)
 
@@ -85,9 +84,12 @@ Creating this app is a milestone for Linux users and developers alike. It's the 
 
 For those looking to get into development, this kind of collaboration between AI and humans could be a game-changer. ChatGPT can offer real-time solutions, help explain tricky concepts, and support both beginners and experienced developers. If you're interested in coding but don't know where to start, working with AI tools like ChatGPT can remove a lot of the uncertainty and speed up your learning curve.
 
-CatGPT-OS is on the way soon after my other apps are done:
-![Screenshot_20241002_161750](https://github.com/user-attachments/assets/72a2bb1a-9ad8-4d65-bf59-c7c09885a80b)
-![Screenshot_20241002_163052](https://github.com/user-attachments/assets/a56a8498-f833-4485-a961-16bece2ca6a9)
+My own personal take: no onther version of ChatGPT on linux runs this well, brave constantly has errors forcing you to refresh as the server load increases due to dropped packets, this app runs much better than any other browser based version try it and see! This repository will eventually be just one of the neat apps I make for my operating system based on Fedora server and KDE 6, featuring an anime catgirl theme that changes pictures every 5 minutes and constantly has new images, or a large selection of mp4 with anime theme so you can video wallpapers if you wish, with everything preconfigured for an out-of-the-box experience. See my Pounce repo for current status and what to expect of the setup and configs tailored by an experienced gamer. I am also making a game in unity for all platforms including linux, but that needs a lot of time to bake.
+
+Pounce is on the way soon after my other apps are done:
+
+![Screenshot_20241106_130908](https://github.com/user-attachments/assets/c54953f2-0bfa-44ee-8ea0-6f196a7cbdc6)
+![Screenshot_20241106_125837](https://github.com/user-attachments/assets/1124de67-66a8-44fa-91c1-66ca17f9ff43)
 
 
 
