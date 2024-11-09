@@ -89,7 +89,7 @@ My own personal take: no onther version of ChatGPT on linux runs this well, brav
 Pounce is on the way soon after my other apps are done, and yeah Nobara is what made me want to do this, it's already on my laptop. I changed my base from Arch to Fedora and like magic almost everything just worked. Figures lmao and I really liked Arch until I discovered Fedora.
 
 ![Screenshot_20241106_130908](https://github.com/user-attachments/assets/c54953f2-0bfa-44ee-8ea0-6f196a7cbdc6)
-![Screenshot_20241106_125837](https://github.com/user-attachments/assets/1124de67-66a8-44fa-91c1-66ca17f9ff43)
+![Screenshot_20241109_110052](https://github.com/user-attachments/assets/6b2631b0-993d-4eb7-a41a-e2b69ad863a6)
 
 
 
